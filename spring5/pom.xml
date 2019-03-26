@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.icypt.learn</groupId>
+    <artifactId>spring5</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+	
+	 <properties>
+        <!--spring版本设置-->
+        <spring.version>5.1.3.RELEASE</spring.version>
+    </properties>
+
+	 <dependencies>
+        <!--spring-context依赖-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!--spring-core依赖-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <!--commons-logging解除依赖-->
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+	</dependencies>
+	
+	<modules>
+		<module>spring-log</module>
+		<module>spring-introduction</module>
+		<module>spring-bean-instance</module>
+	</modules>
+
+
+</project>

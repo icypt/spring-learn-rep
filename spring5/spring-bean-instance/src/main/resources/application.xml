@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--构造方法实例-->
+    <!--<bean id="student" class="com.icypt.learn.entity.Student"></bean>-->
+    <!--通过静态工厂实例-->
+    <!--<bean id="student" class="com.icypt.learn.factory.ObjectFactory" factory-method="createStudentObj"></bean>-->
+    <!--<bean id="cla" class="com.icypt.learn.factory.ObjectFactory" factory-method="createClassObj"></bean>-->
+    <!--<bean id="school" class="com.icypt.learn.factory.ObjectFactory" factory-method="createSchoolObj"></bean>-->
+    <!--注入工厂-->
+    <bean id="objectFactory" class="com.icypt.learn.factory.ObjectFactory"></bean>
+    <bean id="student"  factory-bean="objectFactory" factory-method="createStudentObj"></bean>
+    <bean id="cla"  factory-bean="objectFactory" factory-method="createClassObj"></bean>
+    <bean id="school" factory-bean="objectFactory" factory-method="createSchoolObj"></bean>
+</beans>
