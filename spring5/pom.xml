@@ -59,7 +59,7 @@
 		<module>spring-log</module>
 		<module>spring-introduction</module>
 		<module>spring-bean-instance</module>
-		<module>spring-dependency</module>
+		<module>spring-dependency-autowired</module>
 	</modules>
 
 
