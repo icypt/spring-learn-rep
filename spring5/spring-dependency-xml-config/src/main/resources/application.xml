@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <!-- 声明Blog这个Bean-->
+    <!--<bean id="blog" class="com.icypt.learn.service.Blog"/>-->
+
+    <!-- 声明User这个Bean-->
+    <bean id="user" class="com.icypt.learn.service.User"/>
+
+    <!-- 普通构造注入-->
+    <!--<bean id="blog" class="com.icypt.learn.service.Blog">-->
+        <!--&lt;!&ndash; 构造注入user&ndash;&gt;-->
+        <!--<constructor-arg ref="user"/>-->
+    <!--</bean>-->
+
+    <!-- c标签构造注入-->
+    <!--<bean id="blog" class="com.icypt.learn.service.Blog" c:user-ref="user"/>-->
+
+    <!-- 普通构造注入依赖构造参数索引位置-->
+    <!--<bean id="blog" class="com.icypt.learn.service.Blog">-->
+        <!--&lt;!&ndash; 构造注入user&ndash;&gt;-->
+        <!--<constructor-arg index="0" ref="user"/>-->
+    <!--</bean>-->
+
+    <!-- c标签构造注入依赖构造参数索引位置-->
+    <!--<bean id="blog" class="com.icypt.learn.service.Blog" c:_0-ref="user"/>-->
+
+    <!-- 普通构造注入基本数据类型-->
+    <!--<bean id="blog" class="com.icypt.learn.service.Blog">-->
+        <!--<constructor-arg name="blogName" value="SpringBoot"/>-->
+        <!--<constructor-arg name="blogTitle" value="first boot"/>-->
+        <!--<constructor-arg name="blogSort" value="10"/>-->
+        <!--<constructor-arg name="blogTags">-->
+            <!--<list>-->
+                <!--<value>java</value>-->
+                <!--<value>spring</value>-->
+                <!--<value>springboot</value>-->
+            <!--</list>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
+    <!-- 混合写法-->
+    <!--<bean id="blog" class="com.icypt.learn.service.Blog" c:blogName="SpringBoot" c:_1="first boot">-->
+        <!--<constructor-arg index="2">-->
+            <!--<null/>-->
+        <!--</constructor-arg>-->
+        <!--<constructor-arg index="3">-->
+            <!--<list>-->
+                <!--<value>java</value>-->
+                <!--<value>spring</value>-->
+                <!--<value>springboot</value>-->
+            <!--</list>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
+
+    <!-- 使用setter方法普通注入 -->
+    <!--<bean id="movie" class="com.icypt.learn.service.Movie">-->
+        <!--<property name="movieName" value="战狼"/>-->
+        <!--<property name="movieDesc" value="比较好看的军事题材电影"/>-->
+        <!--<property name="price" value="35.00"/>-->
+        <!--<property name="movieTags">-->
+            <!--<list>-->
+                <!--<value>军事</value>-->
+                <!--<value>特种兵</value>-->
+                <!--<value>坦克漂移</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!-- 使用p命名空间setter方法注入 -->
+    <!--<bean id="movie" class="com.icypt.learn.service.Movie"-->
+          <!--p:movieName="战狼"-->
+          <!--p:price="35.00"-->
+          <!--p:user-ref="user"-->
+          <!--p:movieDesc="比较好看的军事题材电影">-->
+        <!--<property name="movieTags">-->
+            <!--<list>-->
+                <!--<value>军事</value>-->
+                <!--<value>特种兵</value>-->
+                <!--<value>坦克漂移</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!-- 使用util命名空间定义Map集合 -->
+    <util:list id="movieTags">
+        <value>军事</value>
+        <value>特种兵</value>
+        <value>坦克漂移</value>
+    </util:list>
+
+    <!-- 使用p命名空间setter方法注入 -->
+    <bean id="movie" class="com.icypt.learn.service.Movie"
+          p:movieName="战狼"
+          p:price="35.00"
+          p:user-ref="user"
+          p:movieDesc="比较好看的军事题材电影"
+          p:movieTags-ref="movieTags">
+    </bean>
+
+
+</beans>

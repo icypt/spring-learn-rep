@@ -61,6 +61,7 @@
 		<module>spring-bean-instance</module>
 		<module>spring-dependency-autowired</module>
 		<module>spring-dependency-java-config</module>
+		<module>spring-dependency-xml-config</module>
 	</modules>
 
 
