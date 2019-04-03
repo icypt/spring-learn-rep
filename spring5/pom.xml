@@ -62,6 +62,7 @@
 		<module>spring-dependency-autowired</module>
 		<module>spring-dependency-java-config</module>
 		<module>spring-dependency-xml-config</module>
+		<module>spring-dependency-mix-config</module>
 	</modules>
 
 
