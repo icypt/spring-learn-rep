@@ -64,6 +64,7 @@
 		<module>spring-dependency-xml-config</module>
 		<module>spring-dependency-mix-config</module>
 		<module>spring-environment-profile</module>
+		<module>spring-bean-ambiguity</module>
 		<module>spring-bean-conditional</module>
 	</modules>
 
