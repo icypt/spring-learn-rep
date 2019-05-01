@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <!--<context:property-placeholder/>-->
+    <context:component-scan base-package="com.icypt"/>
+    <bean id="userService" class="com.icypt.learn.service.UserService"
+          c:userName="dg"
+          c:appId="${app.id}"
+          c:appName="${app.name}"
+          c:password="123"
+          p:tagList-ref="lists"
+        />
+    <!--标签集合-->
+    <util:list id="lists">
+        <bean class="com.icypt.learn.service.UserTag"
+          p:tagName="java" p:title="java develop"/>
+        <bean class="com.icypt.learn.service.UserTag"
+              p:tagName="java" p:title="java test"/>
+        <bean class="com.icypt.learn.service.UserTag"
+              p:tagName="spring" p:title="spring develop"/>
+        <bean class="com.icypt.learn.service.UserTag"
+              p:tagName="spring" p:title="spring test"/>
+        <bean class="com.icypt.learn.service.UserTag"
+              p:tagName="mybatis" p:title="mybatis develop"/>
+    </util:list>
+    <!--  常见表达式使用 -->
+    <bean id="expressionService" class="com.icypt.learn.service.ExpressionService">
+        <!-- 当前时间毫秒数 -->
+        <property name="currentTimeMilis" value="#{ T(System).currentTimeMillis()}"/>
+        <!-- 获取对象属性 -->
+        <property name="appId" value="#{userService.getAppId()}"/>
+        <!-- 获取系统属性,Spring在容器加载的时候会把System.getProperties()获取的值默认放在systemProperties中 -->
+        <property name="javaVersion" value="#{systemProperties['java.version']}"/>
+        <!--转换科学计数法所得到的值-->
+        <property name="salary" value="#{9.2E3}"/>
+        <!--根据BeanID引入Bean-->
+        <property name="userService" value="#{userService}"/>
+        <!--注入对象为空判断-->
+        <property name="appName" value="#{appService.getAppName()?.substring(1)}"/>
+        <!--指定返回结果类型-->
+        <property name="randomNum" value="#{T(java.lang.Math).random()}"/>
+        <!--基本运算符的使用-->
+        <property name="baseOperator" value="#{(100 + 1) * 2}"/>
+        <!--三目运算符使用以及验证空-->
+        <property name="trinocular" value="#{userService.getPassword()?:'is blank'}"/>
+        <!--正则表达式使用-->
+        <property name="regex" value="#{userService.getUserName().matches('[a-z]')}"/>
+        <!--数组使用-->
+        <property name="arrayFirst" value="#{userService.getTagList()[0].getTagName()}"/>
+        <!--查询运算符,获得第一个值, 从tagList中找到第一个tagName等于java的tag，然后获取tagName-->
+        <property name="queryFirst" value="#{userService.getTagList().^[tagName eq 'java'].getTitle()}"/>
+        <!--查询运算符,获得最后一个值，从tagList中找到最后一个tagName等于java的tag，然后获取tagName-->
+        <property name="queryLast" value="#{userService.getTagList().$[tagName eq 'spring'].getTitle()}"/>
+        <!--投影运算符，从tagList中重组所有tagName的集合-->
+        <property name="projection" value="#{userService.getTagList().![tagName]}"/>
+    </bean>
+</beans>
