@@ -80,6 +80,8 @@
 
 	<modules>
 		<module>spring-log</module>
+		<module>spring-proxy</module>
+		<module>spring-aop</module>
 		<module>spring-spel</module>
 		<module>spring-introduction</module>
 		<module>spring-bean-instance</module>
