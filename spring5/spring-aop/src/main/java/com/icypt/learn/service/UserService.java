@@ -1,7 +1,5 @@
 package com.icypt.learn.service;
 
-import com.icypt.learn.entity.User;
-
 /**
  * platform：www.icypt.com
  * Author：icypt
@@ -10,5 +8,5 @@ import com.icypt.learn.entity.User;
  * description：
  */
 public interface UserService {
-    public boolean saveUser(User user, String userName);
+    public boolean saveUser(Long id, String userName);
 }
