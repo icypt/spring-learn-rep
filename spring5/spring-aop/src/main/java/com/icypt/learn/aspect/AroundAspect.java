@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * version：1.0
  * description： 环绕通知切面
  */
-@Aspect
+//@Aspect
 @Component
 public class AroundAspect {
     public static Logger logger = LoggerFactory.getLogger(AroundAspect.class);
@@ -21,7 +21,7 @@ public class AroundAspect {
     /**
      * 定义切点
      */
-    @Pointcut("execution(* com.icypt.learn.service.UserService.saveUser(..)))")
+    @Pointcut("execution(* com.icypt.learn.service.UserService.saveUser(..))")
     public void process() {
     }
 
