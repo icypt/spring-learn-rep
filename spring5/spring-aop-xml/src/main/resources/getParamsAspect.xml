@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- *****************切面获取参数配置********************* -->
+    <!-- 启用动态代理 -->
+    <aop:aspectj-autoproxy/>
+    <!-- 配置Bean -->
+    <bean id="userService" class="com.icypt.learn.service.impl.UserServiceImpl"/>
+    <bean id="getParamsAspect" class="com.icypt.learn.aspect.GetParamsAspect"/>
+
+    <!-- aop配置-->
+    <aop:config>
+        <aop:aspect ref="getParamsAspect">
+            <!--定义切点-->
+            <aop:pointcut id="process" expression="execution(* com.icypt.learn.service.UserService.saveUser(Long,String)) and args(userId, userName)"/>
+            <!--前置通知-->
+            <aop:before method="before" pointcut-ref="process"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
